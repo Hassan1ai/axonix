@@ -1,0 +1,4 @@
+Place your icon assets in this directory.
+
+The app uses Material Icons for most UI elements, so custom icons are optional.
+If you want to add custom icons, place them here and reference them in the code.

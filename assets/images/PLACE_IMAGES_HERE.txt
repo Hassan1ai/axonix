@@ -1,0 +1,8 @@
+Place your image assets in this directory.
+
+Required images:
+- axonix_logo.png (The Axonix logo with holographic effect shown in screenshots)
+- User profile images for timeline
+- Sample memory/event images
+
+The app will show placeholder icons/text if images are not found.
