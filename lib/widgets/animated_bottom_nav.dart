@@ -50,38 +50,13 @@ class _AnimatedBottomNavState extends State<AnimatedBottomNav>
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(Context context) {
     return Container(
       height: 65,
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            const Color(0xFF1A1A2E),
-            const Color(0xFF16213E),
-          ],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(32.5),
-        border: Border.all(
-          color: Colors.white.withOpacity(0.05),
-          width: 1,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 20,
-            spreadRadius: 0,
-            offset: const Offset(0, 6),
-          ),
-          BoxShadow(
-            color: AppTheme.primaryCyan.withOpacity(0.08),
-            blurRadius: 12,
-            spreadRadius: -2,
-            offset: const Offset(0, 3),
-          ),
-        ],
+        // Removed gradient and shadow to eliminate background
+        borderRadius: BorderRadius.circular(10),
       ),
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -99,7 +74,7 @@ class _AnimatedBottomNavState extends State<AnimatedBottomNav>
 
   Widget _buildNavItem(int index, IconData icon, String label) {
     final isSelected = widget.currentIndex == index;
-    
+
     return Expanded(
       child: GestureDetector(
         onTap: () => widget.onTap(index),
@@ -107,61 +82,48 @@ class _AnimatedBottomNavState extends State<AnimatedBottomNav>
         child: AnimatedBuilder(
           animation: _animation,
           builder: (context, child) {
-            final scale = isSelected
-                ? 1.0 + (_animation.value * 0.2)
-                : 1.0 - (_animation.value * 0.1);
-                        return Transform.scale(
+            final scale = isSelected ? 1.0 + (_animation.value * 0.1) : 1.0;
+
+            return Transform.scale(
               scale: scale,
-              child: Container(
-                constraints: BoxConstraints(
-                  maxWidth: isSelected ? 140 : 50,
-                ),
-                padding: EdgeInsets.symmetric(
-                  horizontal: isSelected ? 14 : 8,
-                  vertical: 10,
-                ),
-                decoration: isSelected
-                    ? BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Colors.white,
-                            Colors.white.withOpacity(0.95),
+              child: Align(
+                alignment: Alignment.center,
+                child: Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: isSelected ? 8 : 4,
+                    vertical: 7,
+                  ),
+                  decoration: isSelected
+                      ? BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Colors.white, Color(0xFFF9FAFB)],
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                          ),
+                          borderRadius: BorderRadius.circular(22),
+                          boxShadow: [
+                            BoxShadow(
+                              color: AppTheme.primaryCyan.withOpacity(0.25),
+                              blurRadius: 8,
+                              offset: const Offset(0, 3),
+                            ),
                           ],
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                        ),
-                        borderRadius: BorderRadius.circular(22),
-                        boxShadow: [
-                          BoxShadow(
-                            color: AppTheme.primaryCyan.withOpacity(0.25),
-                            blurRadius: 10,
-                            spreadRadius: 0,
-                            offset: const Offset(0, 3),
-                          ),
-                          BoxShadow(
-                            color: Colors.white.withOpacity(0.15),
-                            blurRadius: 6,
-                            spreadRadius: -2,
-                            offset: const Offset(0, -2),
-                          ),
-                        ],
-                      )
-                    : null,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      icon,
-                      color: isSelected
-                          ? AppTheme.primaryCyan
-                          : Colors.white.withOpacity(0.5),
-                      size: isSelected ? 22 : 20,
-                    ),
-                    if (isSelected) ...[
-                      const SizedBox(width: 8),
-                      Flexible(
-                        child: Text(
+                        )
+                      : null,
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        icon,
+                        color: isSelected
+                            ? AppTheme.primaryCyan
+                            : Colors.white.withOpacity(0.5),
+                        size: isSelected ? 19 : 18,
+                      ),
+                      if (isSelected) ...[
+                        const SizedBox(width: 5),
+                        Text(
                           label,
                           style: const TextStyle(
                             fontSize: 13,
@@ -172,9 +134,9 @@ class _AnimatedBottomNavState extends State<AnimatedBottomNav>
                           overflow: TextOverflow.ellipsis,
                           maxLines: 1,
                         ),
-                      ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             );

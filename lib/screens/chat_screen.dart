@@ -13,17 +13,15 @@ class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
   final List<ChatMessage> _messages = [
     ChatMessage(
-      text: "Hello! I'm Axonix, your AI memory companion. I'm here to help you remember, search, and understand your day. What would you like to know?",
+      text:
+          "Hello! I'm Axonix, your AI memory companion. I'm here to help you remember, search, and understand your day. What would you like to know?",
       isUser: false,
       time: '08:09 PM',
     ),
+    ChatMessage(text: 'Search my memories', isUser: true, time: '08:10 PM'),
     ChatMessage(
-      text: 'Search my memories',
-      isUser: true,
-      time: '08:10 PM',
-    ),
-    ChatMessage(
-      text: "I've processed your request. Based on your recorded memories, I can help you with that information.",
+      text:
+          "I've processed your request. Based on your recorded memories, I can help you with that information.",
       isUser: false,
       time: '08:10 PM',
     ),
@@ -37,13 +35,15 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _sendMessage() {
     if (_messageController.text.trim().isEmpty) return;
-    
+
     setState(() {
-      _messages.add(ChatMessage(
-        text: _messageController.text,
-        isUser: true,
-        time: TimeOfDay.now().format(context),
-      ));
+      _messages.add(
+        ChatMessage(
+          text: _messageController.text,
+          isUser: true,
+          time: TimeOfDay.now().format(context),
+        ),
+      );
       _messageController.clear();
     });
   }
@@ -95,10 +95,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(
-              Icons.settings,
-              color: AppTheme.primaryCyan,
-            ),
+            icon: const Icon(Icons.settings, color: AppTheme.primaryCyan),
             onPressed: () {
               Navigator.pushNamed(context, '/settings');
             },
@@ -122,7 +119,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ),
             ),
           ),
-          
+
           // Quick Actions
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -144,7 +141,7 @@ class _ChatScreenState extends State<ChatScreen> {
               ],
             ),
           ),
-          
+
           // Input Area
           Container(
             padding: const EdgeInsets.all(16),
@@ -166,16 +163,13 @@ class _ChatScreenState extends State<ChatScreen> {
                       borderRadius: BorderRadius.circular(12),
                     ),
                     child: IconButton(
-                      icon: const Icon(
-                        Icons.mic,
-                        color: AppTheme.primaryCyan,
-                      ),
+                      icon: const Icon(Icons.mic, color: AppTheme.primaryCyan),
                       onPressed: () {},
                     ),
                   ),
-                  
+
                   const SizedBox(width: 12),
-                  
+
                   // Text Input Field
                   Expanded(
                     child: Container(
@@ -209,9 +203,9 @@ class _ChatScreenState extends State<ChatScreen> {
                       ),
                     ),
                   ),
-                  
+
                   const SizedBox(width: 12),
-                  
+
                   // Send Button
                   Container(
                     width: 44,
@@ -233,16 +227,6 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: AnimatedBottomNav(
-        currentIndex: 1,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pushReplacementNamed(context, '/timeline');
-          } else if (index == 2) {
-            Navigator.pushReplacementNamed(context, '/settings');
-          }
-        },
       ),
     );
   }
@@ -320,11 +304,7 @@ class _ChatScreenState extends State<ChatScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
-                icon,
-                color: AppTheme.primaryCyan,
-                size: 18,
-              ),
+              Icon(icon, color: AppTheme.primaryCyan, size: 18),
               const SizedBox(width: 6),
               Flexible(
                 child: Text(
@@ -351,9 +331,5 @@ class ChatMessage {
   final bool isUser;
   final String time;
 
-  ChatMessage({
-    required this.text,
-    required this.isUser,
-    required this.time,
-  });
+  ChatMessage({required this.text, required this.isUser, required this.time});
 }

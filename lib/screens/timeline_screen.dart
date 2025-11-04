@@ -16,33 +16,36 @@ class _TimelineScreenState extends State<TimelineScreen> {
   final List<Map<String, dynamic>> _memories = [
     {
       'id': 1,
-      'imageUrl': 'https://media.gettyimages.com/id/898418726/video/woman-leader-in-business-team-business-metting.jpg?s=640x640&k=20&c=iY3l-8QjSa5fIjx4po-llStzOPPS5oPMtv3WBoNdn64=',
+      'imageUrl':
+          'https://media.gettyimages.com/id/898418726/video/woman-leader-in-business-team-business-metting.jpg?s=640x640&k=20&c=iY3l-8QjSa5fIjx4po-llStzOPPS5oPMtv3WBoNdn64=',
       'time': 'Today, 3:45 PM',
-      'location': 'El Sewedy International School – Lab Room',
+      'location': 'El Sewedy School – Lab Room',
       'title': 'PHP Training Session with Mr. Wael',
-      'tags': ['#training', '#PHP', '#teamwork', '#learning'],
+      'tags': ['#training', '#PHP', '#teamwork'],
       'duration': '1 hr 15 min',
       'description':
           'After the school day ended, we had a PHP training session led by our supervisor, Mr. Wael. He gave a presentation explaining the purpose of PHP, how it works, and how we can use it to support our classmates in future projects. We also discussed team roles, responsibilities, and how each member will contribute to the training sessions. Everyone was really engaged and took notes during the talk. At the end, we took a group photo together — it felt like a great start to our development journey.',
     },
     {
       'id': 2,
-      'imageUrl': 'https://media.gettyimages.com/id/898418726/video/woman-leader-in-business-team-business-metting.jpg?s=640x640&k=20&c=iY3l-8QjSa5fIjx4po-llStzOPPS5oPMtv3WBoNdn64=',
+      'imageUrl':
+          'https://media.gettyimages.com/id/898418726/video/woman-leader-in-business-team-business-metting.jpg?s=640x640&k=20&c=iY3l-8QjSa5fIjx4po-llStzOPPS5oPMtv3WBoNdn64=',
       'time': 'Today, 11:30 AM',
-      'location': 'Director’s Office – El Sewedy International School',
+      'location': 'Director’s Office – El Sewedy School',
       'title': 'Marketing Meeting with the School Director',
-      'tags': ['#marketing', '#mediaTeam', '#planning', '#school'],
+      'tags': ['#marketing', '#mediaTeam', '#planning'],
       'duration': '45 min',
       'description':
           'During the school break, we had an important marketing meeting with Mr. Sweilem, our school director. The discussion was led by Ms. Maha, who supervises all media, marketing, and montage teams. We talked about the importance of marketing for the school’s image and how to highlight student achievements and events effectively. Together, we built a detailed plan and carefully divided the roles among team members. The meeting was inspiring and gave us a clear direction for the upcoming campaigns.',
     },
     {
       'id': 3,
-      'imageUrl': 'https://media.gettyimages.com/id/898418726/video/woman-leader-in-business-team-business-metting.jpg?s=640x640&k=20&c=iY3l-8QjSa5fIjx4po-llStzOPPS5oPMtv3WBoNdn64=',
+      'imageUrl':
+          'https://media.gettyimages.com/id/898418726/video/woman-leader-in-business-team-business-metting.jpg?s=640x640&k=20&c=iY3l-8QjSa5fIjx4po-llStzOPPS5oPMtv3WBoNdn64=',
       'time': 'Today, 10:45 AM',
-      'location': 'School Auditorium – El Sewedy International School',
+      'location': 'School Auditorium – El Sewedy School',
       'title': 'Cybersecurity Session Coverage During Break',
-      'tags': ['#cybersecurity', '#volunteering', '#media', '#education'],
+      'tags': ['#cybersecurity', '#volunteering', '#media'],
       'duration': '50 min',
       'description':
           'During the first break, a volunteer session on Cybersecurity was held by Eng. Heidi together with students from the Cybersecurity department. They presented key concepts about data protection and online safety to other students who were eager to learn more about the field. I was asked by Mr. Sweilem, the school director, to record and document the session as part of my role in the media team. He attended the session himself to supervise and encourage the students. It was an inspiring moment — capturing these scenes felt like highlighting real teamwork and passion for knowledge.',
@@ -53,23 +56,36 @@ class _TimelineScreenState extends State<TimelineScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: AppTheme.darkBackground,
+        backgroundColor: const Color.fromRGBO(12, 20, 38, 100),
         elevation: 0,
         automaticallyImplyLeading: false,
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text(
-              'Smart Timeline',
-              style: TextStyle(
-                fontSize: 22,
-                fontWeight: FontWeight.w700,
-                color: Colors.white,
-                letterSpacing: 0.5,
-              ),
+          children: [
+            Row(
+              children: const [
+                Text(
+                  'Smart ',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: Colors.white,
+                    letterSpacing: 0.5,
+                  ),
+                ),
+                Text(
+                  'Timeline',
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.w700,
+                    color: Color.fromARGB(255, 5, 184, 255),
+                    letterSpacing: 0.5,
+                  ),
+                ),
+              ],
             ),
-            SizedBox(height: 2),
-            Text(
+            const SizedBox(height: 4),
+            const Text(
               'Your digital memory events',
               style: TextStyle(
                 fontSize: 12,
@@ -82,7 +98,11 @@ class _TimelineScreenState extends State<TimelineScreen> {
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.search, color: AppTheme.primaryCyan, size: 28),
+            icon: const Icon(
+              Icons.search,
+              color: AppTheme.primaryCyan,
+              size: 26,
+            ),
             onPressed: () {
               Navigator.pushNamed(context, '/search');
             },
@@ -90,30 +110,35 @@ class _TimelineScreenState extends State<TimelineScreen> {
           const SizedBox(width: 8),
         ],
       ),
-      body: SafeArea(
-        child: ListView.builder(
-          padding: const EdgeInsets.only(top: 16, bottom: 100),
-          itemCount: _memories.length,
-          itemBuilder: (context, index) {
-            final memory = _memories[index];
-            return MemoryCard(
-              imageUrl: memory['imageUrl'],
-              time: memory['time'],
-              location: memory['location'],
-              title: memory['title'],
-              tags: List<String>.from(memory['tags']),
-              duration: memory['duration'],
-              onTap: () {
-                Navigator.pushNamed(
-                  context,
-                  '/memory-detail',
-                  arguments: memory['id'],
-                );
-              },
-            );
-          },
+
+      body: Container(
+        color: const Color(0xFF0A1022),
+        child: SafeArea(
+          child: ListView.builder(
+            padding: const EdgeInsets.only(top: 12, bottom: 5),
+            itemCount: _memories.length,
+            itemBuilder: (context, index) {
+              final memory = _memories[index];
+              return MemoryCard(
+                imageUrl: memory['imageUrl'],
+                time: memory['time'],
+                location: memory['location'],
+                title: memory['title'],
+                tags: List<String>.from(memory['tags']),
+                duration: memory['duration'],
+                onTap: () {
+                  Navigator.pushNamed(
+                    context,
+                    '/memory-detail',
+                    arguments: memory['id'],
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
+
       bottomNavigationBar: AnimatedBottomNav(
         currentIndex: _currentIndex,
         onTap: (index) {
